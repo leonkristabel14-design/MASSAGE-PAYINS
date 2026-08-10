@@ -282,127 +282,233 @@
 
 </section>
 <section id="contacto" class="contacto">
-
     <div class="container">
 
-        <h2 class="section-title">Contacto</h2>
+```
+    <h2 class="section-title">Haz tu pedido</h2>
 
-        <div class="contacto-grid">
+    <div class="contacto-grid">
 
-            <div class="contacto-info">
+        <!-- INFORMACIÓN DE CONTACTO -->
+        <div class="contacto-info">
 
-                <h3>¡Haz tu pedido!</h3>
+            <span class="contacto-etiqueta">🌸 FLORES Y DETALLES</span>
 
-                <p>
-                    ¿Quieres crear recuerdo para tus amigos y familia?
-                    Escríbenos y con gusto atenderemos tu pedido.
-                </p>
+            <h3>Creemos algo especial para ti</h3>
 
-                <div class="contacto-item">
-                    <span class="contacto-icon">📱</span>
-                    <span>WhatsApp: 7277-0015</span>
+            <p>
+                Cuéntanos qué detalle deseas y nosotros nos encargaremos
+                de preparar algo bonito y especial para esa persona.
+            </p>
+
+            <div class="contacto-item">
+                <span class="contacto-icon">📱</span>
+                <div>
+                    <strong>WhatsApp</strong>
+                    <span>7277-0015</span>
+                </div>
+            </div>
+
+            <div class="contacto-item">
+                <span class="contacto-icon">📍</span>
+                <div>
+                    <strong>Ubicación</strong>
+                    <span>Osicala, Morazán, El Salvador</span>
+                </div>
+            </div>
+
+            <div class="contacto-item">
+                <span class="contacto-icon">📸</span>
+                <div>
+                    <strong>Instagram</strong>
+                    <span>@Flores y detalles</span>
+                </div>
+            </div>
+
+            <div class="contacto-mensaje">
+                💐 Gracias por confiar en nosotros para tus momentos
+                especiales.
+            </div>
+
+        </div>
+
+
+        <!-- FORMULARIO -->
+        <form class="contacto-form" id="formulario-contacto">
+
+            <div class="form-header">
+                <h3>Datos del pedido</h3>
+                <p>Completa la información para realizar tu pedido.</p>
+            </div>
+
+
+            <!-- NOMBRE -->
+            <div class="form-group">
+
+                <label for="nombre">
+                    Nombre de quien realiza el pedido
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre"
+                    name="nombre"
+                    placeholder="Ej. María López"
+                    autocomplete="name"
+                    required>
+
+            </div>
+
+
+            <!-- TELÉFONO -->
+            <div class="form-group">
+
+                <label for="telefono">
+                    Número de teléfono
+                </label>
+
+                <input
+                    type="tel"
+                    id="telefono"
+                    name="telefono"
+                    placeholder="Ej. 7277-0015"
+                    autocomplete="tel"
+                    required>
+
+            </div>
+
+
+            <!-- PRODUCTO -->
+            <div class="form-group">
+
+                <label for="producto">
+                    ¿Qué deseas pedir?
+                </label>
+
+                <select
+                    id="producto"
+                    name="producto"
+                    required>
+
+                    <option value="" disabled selected>
+                        Selecciona una opción
+                    </option>
+
+                    <option value="Ramo de rosas">
+                        🌹 Ramo de rosas - $25.00
+                    </option>
+
+                    <option value="Ramo de tulipanes">
+                        🌷 Ramo de tulipanes - $15.00
+                    </option>
+
+                    <option value="Ramo de girasoles">
+                        🌻 Ramo de girasoles - $20.00
+                    </option>
+
+                    <option value="Flores personalizadas">
+                        🌸 Flores personalizadas
+                    </option>
+
+                    <option value="Otro">
+                        💝 Otro detalle
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- CANTIDAD Y FECHA -->
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="cantidad">
+                        Cantidad
+                    </label>
+
+                    <input
+                        type="number"
+                        id="cantidad"
+                        name="cantidad"
+                        min="1"
+                        value="1"
+                        required>
+
                 </div>
 
-                <div class="contacto-item">
-                    <span class="contacto-icon">📍</span>
-                    <span>Osicala Morazan, El Salvador</span>
-                </div>
 
-                <div class="contacto-item">
-                    <span class="contacto-icon">📸</span>
-                    <span>Instagram: @Flores y detalles</span>
+                <div class="form-group">
+
+                    <label for="fecha">
+                        Fecha de entrega
+                    </label>
+
+                    <input
+                        type="date"
+                        id="fecha"
+                        name="fecha"
+                        required>
+
                 </div>
 
             </div>
 
 
-            <form class="contacto-form" id="formulario-contacto">
+            <!-- DIRECCIÓN -->
+            <div class="form-group">
 
-                <div class="form-group">
+                <label for="direccion">
+                    Dirección de entrega
+                </label>
 
-                    <label for="telefono">
-    Número de teléfono
-</label>
+                <input
+                    type="text"
+                    id="direccion"
+                    name="direccion"
+                    placeholder="Escribe la dirección de entrega"
+                    autocomplete="street-address"
+                    required>
 
-<input 
-type="tel" 
-id="telefono" 
-name="telefono" 
-placeholder="Ejemplo: 7000-0000" 
-required>
-<div class="form-group">
+            </div>
 
-    <label for="nombre">
-        ¿A nombre de quién será el pedido?
-    </label>
 
-    <input 
-        type="text" 
-        id="nombre" 
-        name="nombre" 
-        placeholder="Escribe el nombre aquí" 
-        required>
+            <!-- MENSAJE -->
+            <div class="form-group">
 
-</div>
-                </div>
+                <label for="mensaje">
+                    Detalles del pedido
+                </label>
 
-                <div class="form-group">
-
-                    <label for="mensaje">
-                       
-                        Pedido o mensaje
-                    </label>
-                </div>
-                
-                    <textarea 
+                <textarea
                     id="mensaje"
                     name="mensaje"
                     rows="5"
-                    placeholder="Escribe tu pedido aquí..."
+                    placeholder="Ej. Quiero las rosas de color rojo, con papel rosado y un listón blanco..."
                     required></textarea>
 
-                </div>
-               
-                            </div>
-
-                             <button type="submit" class="btn btn-primary">
-                   
-                               Enviar pedido
+            </div>
 
 
-                                
-                            </button>
+            <!-- BOTÓN -->
+            <button
+                type="submit"
+                class="btn btn-primary btn-enviar">
 
+                📱 Enviar pedido por WhatsApp
 
-                             </form>
+            </button>
 
-        </div>
+            <p class="form-nota">
+                🔒 Tus datos se utilizarán únicamente para atender tu pedido.
+            </p>
+
+        </form>
 
     </div>
+
+</div>
+```
 
 </section>
-</main>
-
-
-<footer class="footer">
-
-    <div class="container">
-
-        <p>
-            &copy; 2026 FLORES Y DETALLES - Todos los derechos reservados.
-        </p>
-
-        <p>
-            Preparado con cariño, amor y mas.
-        </p>
-
-    </div>
-
-</footer>
-
-
-<script src="script.js"></script>
-
-</body>
-
-</html>
