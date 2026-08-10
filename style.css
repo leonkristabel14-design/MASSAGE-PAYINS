@@ -1,3 +1,7 @@
+/* =========================================================
+   RESET Y CONFIGURACIÓN GENERAL
+========================================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -489,6 +493,214 @@ a {
     animation: aparecer 1s ease forwards;
 }
 
+
+/* =========================================================
+   TABLETS
+========================================================= */
+
+@media screen and (max-width: 900px) {
+
+    .header .container {
+        gap: 15px;
+    }
+
+    .nav ul {
+        gap: 18px;
+    }
+
+    .hero .container {
+        gap: 40px;
+    }
+
+    .hero-image img {
+        width: 280px;
+        height: 280px;
+    }
+
+    .sobre-mi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   TELÉFONOS
+========================================================= */
+
+@media screen and (max-width: 768px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .container {
+        padding: 0 18px;
+    }
+
+
+    /* HEADER */
+
+    .header {
+        position: relative;
+    }
+
+    .header .container {
+        flex-direction: column;
+
+        padding: 18px;
+
+        gap: 15px;
+    }
+
+    .logo {
+        justify-content: center;
+
+        text-align: center;
+
+        flex-direction: column;
+
+        gap: 3px;
+    }
+
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+
+    .logo span {
+        font-size: 0.9rem;
+    }
+
+
+    /* MENÚ */
+
+    .nav ul {
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 10px 18px;
+    }
+
+    .nav a {
+        font-size: 0.85rem;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        min-height: auto;
+
+        padding: 70px 0;
+    }
+
+    .hero .container {
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 40px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-content h2 {
+        font-size: 2.3rem;
+
+        margin-bottom: 20px;
+    }
+
+    .hero-text {
+        font-size: 1rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+
+    /* BOTONES */
+
+    .hero-buttons {
+        flex-direction: column;
+
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+
+        max-width: 300px;
+    }
+
+
+    /* IMAGEN */
+
+    .hero-image img {
+        width: 230px;
+        height: 230px;
+
+        border-width: 5px;
+    }
+
+
+    /* SOBRE NOSOTROS */
+
+    .sobre-mi {
+        padding: 70px 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+
+        margin-bottom: 35px;
+    }
+
+    .sobre-mi-grid {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .sobre-mi-card {
+        padding: 30px 22px;
+    }
+}
+
+
+/* =========================================================
+   TELÉFONOS PEQUEÑOS
+========================================================= */
+
+@media screen and (max-width: 400px) {
+
+    .logo h1 {
+        font-size: 1.4rem;
+    }
+
+    .nav ul {
+        gap: 8px 12px;
+    }
+
+    .nav a {
+        font-size: 0.8rem;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .hero-image img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .sobre-mi-card {
+        padding: 25px 18px;
+    }
+}
 /* =========================================================
    FORMULARIO MÁS GRANDE
 ========================================================= */
