@@ -14,7 +14,7 @@ html {
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #ffffff;
+    background-color: #df8f9c;
     color: #410763;
     line-height: 1.6;
     overflow-x: hidden;
@@ -832,33 +832,50 @@ a {
 
 
 /* =========================================================
-   CELULAR
-========================================================= */
+   📱 FORMULARIO EN CELULAR
+   ========================================================= */
 
 @media screen and (max-width: 600px) {
 
-    .contacto-form {
-        padding: 30px 22px;
+    .contacto-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+    }
 
+    .contacto-info {
+        width: 100%;
+        padding: 30px 20px;
+    }
+
+    .contacto-form {
+        width: 100%;
+        padding: 30px 20px;
         min-height: auto;
     }
 
-    .form-header h3 {
-        font-size: 1.6rem;
+    .form-row {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-group {
+        width: 100%;
+        margin-bottom: 20px;
     }
 
     .form-group input,
     .form-group select,
     .form-group textarea {
-        padding: 15px;
+        width: 100%;
     }
 
     .form-group textarea {
         min-height: 180px;
     }
 
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 0;
+    .btn-enviar {
+        width: 100%;
     }
 }
