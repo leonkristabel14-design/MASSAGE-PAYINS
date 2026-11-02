@@ -19,23 +19,26 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 
 // REEMPLAZA ESTOS DATOS CON LOS DE TU PROYECTO FIREBASE
-const configuracionFirebase = {
-    apiKey: "COLOCA_AQUI_TU_API_KEY",
-    authDomain: "COLOCA_AQUI_TU_AUTH_DOMAIN",
-    databaseURL: "COLOCA_AQUI_TU_DATABASE_URL",
-    projectId: "COLOCA_AQUI_TU_PROJECT_ID",
-    storageBucket: "COLOCA_AQUI_TU_STORAGE_BUCKET",
-    messagingSenderId: "COLOCA_AQUI_TU_MESSAGING_SENDER_ID",
-    appId: "COLOCA_AQUI_TU_APP_ID"
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDR-kkVSp0NI8V1m8Uv_yrSrsNZZ5D1SFc",
+  authDomain: "massage-payins.firebaseapp.com",
+  projectId: "massage-payins",
+  storageBucket: "massage-payins.firebasestorage.app",
+  messagingSenderId: "54703297379",
+  appId: "1:54703297379:web:c3cedee40f05a4a2c4f956",
+  measurementId: "G-G64YGV6DPY"
 };
 
 // PEGA AQUÍ EL UID DE TU DISPOSITIVO ADMINISTRADOR
 // Primero déjalo vacío para obtener tu UID.
 const UID_ADMINISTRADORA = "";
 
-const aplicacion = initializeApp(configuracionFirebase);
+
+const aplicacion = initializeApp(firebaseConfig);
 const autenticacion = getAuth(aplicacion);
 const baseDatos = getDatabase(aplicacion);
+
 
 const referenciaMovimientos = ref(baseDatos, "movimientos");
 
