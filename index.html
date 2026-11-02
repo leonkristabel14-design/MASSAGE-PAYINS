@@ -1,521 +1,207 @@
+<!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flores y Detalles | </title>
-
+    <title>MASSAGE PAYINS</title>
     <link rel="stylesheet" href="style.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-<header class="header">
-    <div class="container">
+    <section id="pantallaAcceso" class="pantalla-acceso">
+        <div class="caja-acceso">
+            <h1>MASSAGE PAYINS</h1>
+            <p>Selecciona tu nombre para ingresar</p>
 
-        <div class="fondo">
-            <h1>Flores y Detalles</h1>
-            <span>Momentos y Mas</span>
+            <button class="boton-acceso" data-nombre="PAPI">PAPI</button>
+            <button class="boton-acceso" data-nombre="YANELLY">YANELLY</button>
+
+            <p id="estadoAcceso">Conectando con el sistema...</p>
+            <small id="identificadorDispositivo"></small>
         </div>
-        <nav class="nav">
-         
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-        
-        
-            
-                <li><a href="#sobre-mi">Sobre 
-                    Nosotros</a></li>
+    </section>
 
-                <li><a href="#habilidades">Nuestra 
-                    Mercancia</a></li>
-
-                <li><a href="#proyectos">Nuestros 
-                    Catalogos</a></li>
-
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-
-    </div>
-</header>
-
-<main>
-
-<section id="inicio" class="hero">
-    <div class="container">
-
-        <div class="hero-content">
-         
- 
-            <h2>
-                Bienvenido a
-                <span class="highlight">
-                    Flores y Detalles</span>
-            </h2>
-
-            <p class="hero-text">
-                Nuestro negocio se dedica a la creación y venta de flores, arreglos florales y detalles personalizados para diferentes ocasiones especiales.
-            </p>
-
-            <p class="hero-subtitle">
-               Momentos y mas para compartir con tu familia y amigos.
-            </p>
-
-            <div class="hero-buttons">
-                <a href="#proyectos" class="btn btn-primary">Ver Catalogos</a>
-                <a href="#contacto" class="btn btn-secondary">Haz tu pedido</a>
-            
-            </div>
-             
-
+    <header class="encabezado">
+        <div>
+            <h1>MASSAGE PAYINS</h1>
+            <p>Control de ingresos y gastos</p>
         </div>
 
-        <div class="hero-image">
-            <img src="https://res.cloudinary.com/tbokhyu7/image/upload/ar_1:1,c_auto/f_auto/q_auto/edited-image_1_vxpx6s.jpg" alt="Ramo para novia">
+        <div class="sesion">
+            <span id="nombreUsuario">Conectando...</span>
+            <button id="cerrarSesion" type="button">Cambiar usuario</button>
         </div>
-        
+    </header>
 
+    <main class="contenedor">
 
-    </div>
-</section>
-
-<section id="sobre-mi" class="sobre-mi">
-
-    <div class="container">
-
-        <h2 class="section-title">¿Quiénes Somos?</h2>
-
-        <div class="sobre-mi-grid">
-
-            <div class="sobre-mi-card">
-
-                <div class="icon">🌸</div>
-
-                <h3>Nuestra Historia</h3>
-
-                <p>
-                     Nuestra historia comenzó con la idea de crear regalos especiales que permitieran expresar sentimientos y hacer felices a las personas. 
-                </p>
-
+        <section class="resumen">
+            <div class="tarjeta ingresos">
+                <h3>Ingresos del mes</h3>
+                <p id="totalIngresos">$0.00</p>
             </div>
 
-            <div class="sobre-mi-card">
-
-                <div class="icon">⭐</div>
-
-                <h3>Misión</h3>
-
-                <p>
-                    Nuestra misión es crear y ofrecer flores, arreglos y detalles personalizados de alta calidad, elaborados con creatividad, dedicación y amor. 
-
+            <div class="tarjeta gastos">
+                <h3>Gastos del mes</h3>
+                <p id="totalSalidas">$0.00</p>
             </div>
 
-            <div class="sobre-mi-card">
+            <div class="tarjeta balance">
+                <h3>Balance disponible</h3>
+                <p id="totalGeneral">$0.00</p>
+            </div>
+        </section>
 
-                <div class="icon">🌼</div>
+        <section class="seccion">
+            <h2>Registrar ingresos</h2>
 
-                <h3>Visión</h3>
+            <p class="informacion">Registrado por: <strong id="personaIngreso">Selecciona tu nombre al entrar</strong></p>
 
-                <p>Aspiramos a crecer y llegar a más clientes, ofreciendo productos únicos que conviertan cada ocasión especial en un recuerdo lleno de alegría y emoción.
-                </p>
+            <h3>Selecciona los servicios</h3>
 
+            <div class="servicios">
+                <button class="boton-servicio" data-servicio="Masaje cuerpo completo" data-precio="15">MASAJE CUERPO COMPLETO <b>$15</b></button>
+                <button class="boton-servicio" data-servicio="Masaje espalda" data-precio="10">MASAJE ESPALDA <b>$10</b></button>
+                <button class="boton-servicio" data-servicio="Sobo" data-precio="5">SOBO <b>$5</b></button>
+                <button class="boton-servicio" data-servicio="Limpieza facial" data-precio="15">LIMPIEZA FACIAL <b>$15</b></button>
+                <button class="boton-servicio" data-servicio="Desbloqueo abdominal" data-precio="10">DESBLOQUEO ABDOMINAL <b>$10</b></button>
+                <button class="boton-servicio" data-servicio="Drenaje linfático" data-precio="15">DRENAJE LINFÁTICO <b>$15</b></button>
+                <button class="boton-servicio" data-servicio="Maderoterapia" data-precio="15">MADEROTERAPIA <b>$15</b></button>
+                <button class="boton-servicio" data-servicio="Ventosas" data-precio="5">VENTOSAS <b>$5</b></button>
             </div>
 
-        </div>
-
-    </div>
-
-</section>
-
-<section id="habilidades" class="habilidades">
-
-    <div class="container">
-
-        <h2 class="section-title">Nuestra Mercancia</h2>
-
-        <div class="habilidades-grid">
-
-            <div class="habilidad-card">
-
-                <div class="habilidad-icon">🌹</div>
-                
-
-                <div>
-                    <h3>Rosas</h3>
-                    <p>Rosas naturales , Rosas eternas (de tela o limpia pipas) de diferentes colores.</p>
-                    <span class="porcentaje">PRECIO POR UNIDAD $1.00</span>
-
-        <div class="hero-image">
-            <img src="https://res.cloudinary.com/tbokhyu7/image/upload/f_auto/q_auto/pexels-ana-99819616-34190668_d9be6b.jpg" alt="Rosas">
-        </div>
-                </div>
-
-            </div>
-
-            <div class="habilidad-card">
-
-                <div class="habilidad-icon">🌻</div>
-
-                <div>
-                    <h3>Girasoles</h3>
-                    <p>Girasoles eternos (de tela o limpia pipas) y girasoles naturales.</p>
-                    <span class="porcentaje">PRECIO POR UNIDAD $1.50</span>
-
-        <div class="hero-image">
-            <img src="https://res.cloudinary.com/tbokhyu7/image/upload/f_auto/q_auto/pexels-mariano-di-luch-679379189-29965756_abj9ui.jpg" alt="Girasoles">
-        </div>
-                </div>
-
-            </div>
-
-            <div class="habilidad-card">
-
-                <div class="habilidad-icon">🌷</div>
-
-                <div>
-                    <h3>Tulipanes</h3>
-                    <p>Tulipanes naturales o eternos (de tela, limpia pipas o de lego).</p>
-                    <span class="porcentaje">PRECIO POR UNIDAD $2.00</span>
-
-         <div class="hero-image">
-            <img src="https://res.cloudinary.com/tbokhyu7/image/upload/f_auto/q_auto/pexels-irene-asthetik-2147866784-35563988_mgau7u.jpg" alt="Tulipanes">
-        </div>
-                </div>
-
-            </div>
-
-            <div class="habilidad-card">
-
-                <div class="habilidad-icon">🌸</div>
-
-                <div>
-                    <h3>Flores</h3>
-                    <p>Flores naturales, flores rojas, rosas, amarillas, celestes, azules, moradas y mas.</p>
-                    <span class="porcentaje"> PRECIO POR UNIDAD Desde $0.50</span>
-                     
-        <div class="hero-image">
-            <img src="https://res.cloudinary.com/tbokhyu7/image/upload/f_auto/q_auto/pexels-busra-karabulut-2046162766-30175093_o9zhmz.jpg" alt="Flores">
-        </div>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<section id="proyectos" class="proyectos">
-
-    <div class="container">
-
-
-        <h2 class="section-title">Nuestros Catalogos</h2>
-
-        <div class="proyectos-grid">
-
-            <div class="proyecto-card">
-
-                <div class="proyecto-imagen">🌸</div>
-
-                <h3>Ramo de Rosas </h3>
-
-                <p>
-                    Rosas, forradas con papel decorativo y liston
-                </p>
-       
-
-                <div class="proyecto-tags">
-                    <span class="tag">PRECIO $25.00 -</span>
-                    <span class="tag">Puedes escoger diferentes colores y diseños (El más vendido)</span>
-                </div>
-        <div class="hero-image">
-            <img src="https://res.cloudinary.com/tbokhyu7/image/upload/f_auto/q_auto/pexels-mlkbnl-24987510_ltvef2.jpg" alt="Ramos">
-        </div>
-            </div>
-
-            <div class="proyecto-card">
-
-                <div class="proyecto-imagen">🌸</div>
-
-                <h3>Ramo de Tulipanes naturales</h3>
-
-                <p>
-                  Tulipanes naturales con papel decorativo y liston
-                </p>
-
-                <div class="proyecto-tags">
-                    <span class="tag">PRECIO $15.00 -</span>
-                    <span class="tag">Puedes escoger diferentes colores y diferentes diseños</span>
-                </div>
-         <div class="hero-image">
-            <img src="https://res.cloudinary.com/tbokhyu7/image/upload/f_auto/q_auto/pexels-sumcig-31086460_ywzibx.jpg" alt="Ramo de ulipanes">
-        </div>
-            </div>
-
-            <div class="proyecto-card">
-
-                <div class="proyecto-imagen">🌸</div>
-
-                <h3>Ramo de Girasoles</h3>
-
-                <p>
-                   Girasoles naturales con papel decorativo y listones.
-                </p>
-
-                <div class="proyecto-tags">
-                    <span class="tag">PRECIO $20.00 -</span>
-                    <span class="tag">Puedes escoger la calidad de los girasoles y tu diseño preferido</span>
-                </div>
-        <div class="hero-image">
-            <img src="https://res.cloudinary.com/tbokhyu7/image/upload/f_auto/q_auto/pexels-priscila-caetano-37075677-15766636_tetsyo.jpg" alt="Ramo de girasoles">
-        </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-<section id="contacto" class="contacto">
-    <div class="container">
-
-</div>
-
-    <h2 class="section-title">Haz tu pedido</h2>
-
-    <div class="contacto-grid">
-
-        <!-- INFORMACIÓN DE CONTACTO -->
-        <div class="contacto-info">
-
-            <span class="contacto-etiqueta">🌸 FLORES Y DETALLES</span>
-
-            <h3>Creemos algo especial para ti</h3>
-
-            <p>
-                Cuéntanos qué detalle deseas y nosotros nos encargaremos
-                de preparar algo bonito y especial para esa persona.
-            </p>
-
-            <div class="contacto-item">
-                <span class="contacto-icon">📱</span>
-                <div>
-                    <strong>WhatsApp</strong>
-                    <span>7277-0015</span>
+            <div class="servicio-personalizado">
+                <h3>Agregar otro servicio</h3>
+                <div class="fila">
+                    <input type="text" id="otroNombre" placeholder="Nombre del servicio">
+                    <input type="number" id="otroPrecio" placeholder="Precio" min="0.01" step="0.01">
+                    <button type="button" id="agregarOtro">Agregar</button>
                 </div>
             </div>
 
-            <div class="contacto-item">
-                <span class="contacto-icon">📍</span>
-                <div>
-                    <strong>Ubicación</strong>
-                    <span>Osicala, Morazán, El Salvador</span>
+            <div class="lista-seleccionada">
+                <h3>Servicios seleccionados</h3>
+                <ul id="listaServicios">
+                    <li>No hay servicios seleccionados.</li>
+                </ul>
+            </div>
+
+            <div class="calculadora">
+                <div class="fila-calculo">
+                    <label>Subtotal:</label>
+                    <strong id="subtotalCliente">$0.00</strong>
+                </div>
+
+                <div class="fila-calculo">
+                    <label for="descuento">Descuento ($):</label>
+                    <input type="number" id="descuento" value="0" min="0" step="0.01">
+                </div>
+
+                <div class="fila-calculo">
+                    <label>Total con descuento:</label>
+                    <strong id="totalConDescuento">$0.00</strong>
+                </div>
+
+                <div class="fila-calculo total-final">
+                    <label for="totalCobrar">Total cobrado ($):</label>
+                    <input type="number" id="totalCobrar" value="0.00" min="0" step="0.01">
                 </div>
             </div>
 
-            <div class="contacto-item">
-                <span class="contacto-icon">📸</span>
-                <div>
-                    <strong>Instagram</strong>
-                    <span>@Flores y detalles</span>
-                </div>
+            <div class="campo">
+                <label for="fechaIngreso">Fecha del ingreso</label>
+                <input type="date" id="fechaIngreso">
             </div>
 
-            <div class="contacto-mensaje">
-                💐 Gracias por confiar en nosotros para tus momentos
-                especiales.
-            </div>
+            <button type="button" id="guardarIngreso" class="boton-principal">Guardar ingreso</button>
+        </section>
 
+        <section class="seccion">
+            <h2>Registrar gastos</h2>
 
-        </div>
-
-
-        <!-- FORMULARIO -->
-        <form class="contacto-form" id="formulario-contacto">
-
-            <div class="form-header">
-                <h3>Datos del pedido</h3>
-                <p>Completa la información para realizar tu pedido.</p>
-            </div>
-
-
-            <!-- NOMBRE -->
-            <div class="form-group">
-
-                <label for="nombre">
-                    Nombre de quien realiza el pedido
-                </label>
-
-                <input
-                    type="text"
-                    id="nombre"
-                    name="nombre"
-                    placeholder="Ej. María López"
-                    autocomplete="name"
-                    required>
-
-            </div>
-
-
-            <!-- TELÉFONO -->
-            <div class="form-group">
-
-                <label for="telefono">
-                    Número de teléfono
-                </label>
-
-                <input
-                    type="tel"
-                    id="telefono"
-                    name="telefono"
-                    placeholder="Ej. 7277-0015"
-                    autocomplete="tel"
-                    required>
-
-            </div>
-
-
-            <!-- PRODUCTO -->
-            <div class="form-group">
-
-                <label for="producto">
-                    ¿Qué deseas pedir?
-                </label>
-
-                <select
-                    id="producto"
-                    name="producto"
-                    required>
-
-                    <option value="" disabled selected>
-                        Selecciona una opción
-                    </option>
-
-                    <option value="Ramo de rosas">
-                        🌹 Ramo de rosas - $25.00
-                    </option>
-
-                    <option value="Ramo de tulipanes">
-                        🌷 Ramo de tulipanes - $15.00
-                    </option>
-
-                    <option value="Ramo de girasoles">
-                        🌻 Ramo de girasoles - $20.00
-                    </option>
-
-                    <option value="Flores personalizadas">
-                        🌸 Flores personalizadas
-                    </option>
-
-                    <option value="Otro">
-                        💝 Otro detalle
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- CANTIDAD Y FECHA -->
-            <div class="form-row">
-
-                <div class="form-group">
-
-                    <label for="cantidad">
-                        Cantidad
-                    </label>
-
-                    <input
-                        type="number"
-                        id="cantidad"
-                        name="cantidad"
-                        min="1"
-                        value="1"
-                        required>
-
+            <form id="formularioGasto">
+                <div class="campo">
+                    <label for="conceptoGasto">Descripción del gasto</label>
+                    <input type="text" id="conceptoGasto" placeholder="Ejemplo: Compra de materiales" required>
                 </div>
 
-
-                <div class="form-group">
-
-                    <label for="fecha">
-                        Fecha de entrega
-                    </label>
-
-                    <input
-                        type="date"
-                        id="fecha"
-                        name="fecha"
-                        required>
-
+                <div class="campo">
+                    <label for="cantidadGasto">Cantidad ($)</label>
+                    <input type="number" id="cantidadGasto" min="0.01" step="0.01" required>
                 </div>
 
+                <div class="campo">
+                    <label for="fechaGasto">Fecha del gasto</label>
+                    <input type="date" id="fechaGasto" required>
+                </div>
+
+                <button type="submit" class="boton-principal boton-gasto">Guardar gasto</button>
+            </form>
+        </section>
+
+        <section class="seccion">
+            <h2>Historial de movimientos</h2>
+            <p class="informacion">Todos los movimientos de ambos dispositivos aparecen aquí.</p>
+
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Movimiento</th>
+                            <th>Ingresos</th>
+                            <th>Gastos</th>
+                            <th>Registrado por</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaMovimientos"></tbody>
+                </table>
             </div>
+        </section>
 
-
-            <!-- DIRECCIÓN -->
-            <div class="form-group">
-
-                <label for="direccion">
-                    Dirección de entrega
-                </label>
-
-                <input
-                    type="text"
-                    id="direccion"
-                    name="direccion"
-                    placeholder="Escribe la dirección de entrega"
-                    autocomplete="street-address"
-                    required>
-
+        <section class="seccion">
+            <h2>Resumen diario</h2>
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Ingresos del día</th>
+                            <th>Gastos del día</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resumenDiario"></tbody>
+                </table>
             </div>
+        </section>
 
+        <section class="seccion">
+            <h2>Resumen mensual</h2>
+            <p class="informacion">Mes actual: <strong id="mesActual"></strong></p>
 
-            <!-- MENSAJE -->
-            <div class="form-group">
-
-                <label for="mensaje">
-                    Detalles del pedido
-                </label>
-
-                <textarea
-                    id="mensaje"
-                    name="mensaje"
-                    rows="5"
-                    placeholder="Ej. Quiero las rosas de color rojo, con papel rosado y un listón blanco..."
-                    required></textarea>
-
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mes</th>
+                            <th>Ingresos</th>
+                            <th>Gastos</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resumenMensual"></tbody>
+                </table>
             </div>
+        </section>
 
+    </main>
 
-            <!-- BOTÓN -->
-            <button
-                type="submit"
-                class="btn btn-primary btn-enviar">
+    <footer>MASSAGE PAYINS | Sistema de control financiero</footer>
 
-                📱 Enviar pedido por WhatsApp
-
-            </button>
-
-            <p class="form-nota">
-                🔒 Tus datos se utilizarán únicamente para atender tu pedido.
-            </p>
-
-        </form>
-
-    </div>
-
-</div>
-```
-
-</section>
-
-<script src="script.js"></script>
-
+    <script type="module" src="script.js"></script>
 </body>
 </html>
