@@ -109,7 +109,7 @@ onAuthStateChanged(autenticacion, async usuario => {
 
     const nombreGuardado = localStorage.getItem("nombreMassagePayins");
 
-    if (nombreGuardado === "LITO" || nombreGuardado === "YANELLY") {
+    if (nombreGuardado === "PAPI" || nombreGuardado === "YANELLY") {
         entrarAlSistema(nombreGuardado);
     } else {
         mostrarEstado("Selecciona tu nombre para continuar.");
