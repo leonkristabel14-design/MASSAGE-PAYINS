@@ -9,18 +9,43 @@
 </head>
 <body>
 
-    <section id="pantallaAcceso" class="pantalla-acceso">
-        <div class="caja-acceso">
-            <h1>MASSAGE PAYINS</h1>
-            <p>Selecciona tu nombre para ingresar</p>
+    
+<section id="pantallaAcceso" class="pantalla-acceso">
+    <div class="caja-acceso">
+        <h1>MASSAGE PAYINS</h1>
+        <p>Selecciona tu nombre para ingresar</p>
 
-            <button class="boton-acceso" data-nombre="PAPI">PAPI</button>
-            <button class="boton-acceso" data-nombre="YANELLY">YANELLY</button>
+        <button class="boton-acceso" id="accesoPapi" type="button">
+            PAPI
+        </button>
 
-            <p id="estadoAcceso">Conectando con el sistema...</p>
-            <small id="identificadorDispositivo"></small>
-        </div>
-    </section>
+        <button class="boton-acceso" id="accesoYanelly" type="button">
+            YANELLY
+        </button>
+
+        <form id="formularioAccesoYanelly" class="oculto">
+            <h3>Acceso de administradora</h3>
+
+            <div class="campo">
+                <label for="contrasenaYanelly">Contraseña</label>
+                <input
+                    type="password"
+                    id="contrasenaYanelly"
+                    placeholder="Ingresa tu contraseña"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="boton-principal">
+                Entrar
+            </button>
+        </form>
+
+        <p id="estadoAcceso">Conectando con el sistema...</p>
+        <small id="identificadorDispositivo"></small>
+    </div>
+</section>
+
 
     <header class="encabezado">
         <div>
@@ -28,10 +53,19 @@
             <p>Control de ingresos y gastos</p>
         </div>
 
-        <div class="sesion">
-            <span id="nombreUsuario">Conectando...</span>
-            <button id="cerrarSesion" type="button">Cambiar usuario</button>
-        </div>
+       
+<div class="sesion">
+    <span id="nombreUsuario">Conectando...</span>
+
+    <button id="cambiarContrasena" type="button" class="oculto">
+        Cambiar contraseña
+    </button>
+
+    <button id="cerrarSesion" type="button">
+        Cambiar usuario
+    </button>
+</div>
+
     </header>
 
     <main class="contenedor">

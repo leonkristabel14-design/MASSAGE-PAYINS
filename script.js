@@ -4,10 +4,16 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 
+
 import {
     getAuth,
     signInAnonymously,
-    onAuthStateChanged
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    signOut,
+    updatePassword,
+    reauthenticateWithCredential,
+    EmailAuthProvider
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
 import {
@@ -32,8 +38,9 @@ const firebaseConfig = {
 
 // PEGA AQUÍ EL UID DE TU DISPOSITIVO ADMINISTRADOR
 // Primero déjalo vacío para obtener tu UID.
-const UID_ADMINISTRADORA = "";
+const UID_ADMINISTRADORA = "9lCNaLklqQNT1IPzdJYn5m7Jcnr1";
 
+const CORREO_ADMINISTRADORA = "yaneleon17@gmail.com";
 
 const aplicacion = initializeApp(firebaseConfig);
 const autenticacion = getAuth(aplicacion);
@@ -86,70 +93,130 @@ function mostrarEstado(mensaje) {
     document.getElementById("estadoAcceso").textContent = mensaje;
 }
 
+
 // ==========================================
-// INICIO DE SESIÓN ANÓNIMO
+// INICIO DE SESIÓN
 // ==========================================
 
-onAuthStateChanged(autenticacion, async usuario => {
-    if (!usuario) {
-        try {
-            mostrarEstado("Preparando acceso seguro...");
-            await signInAnonymously(autenticacion);
-        } catch (error) {
-            mostrarEstado("No se pudo conectar. Revisa Firebase.");
-            console.error(error);
-        }
-
-        return;
-    }
-
+onAuthStateChanged(autenticacion, usuario => {
     usuarioActual = usuario;
 
-    document.getElementById("identificadorDispositivo").textContent =
-        "UID de este dispositivo: " + usuario.uid;
+    if (usuario) {
+        document.getElementById("identificadorDispositivo").textContent =
+            "UID de este dispositivo: " + usuario.uid;
 
-    console.log("UID DE ESTE DISPOSITIVO:", usuario.uid);
-
-    const nombreGuardado = localStorage.getItem("nombreMassagePayins");
-
-    if (nombreGuardado === "PAPI" || nombreGuardado === "YANELLY") {
-        entrarAlSistema(nombreGuardado);
-    } else {
-        mostrarEstado("Selecciona tu nombre para continuar.");
+        console.log("UID DE ESTE DISPOSITIVO:", usuario.uid);
     }
 });
 
-// Seleccionar nombre
-document.querySelectorAll(".boton-acceso").forEach(boton => {
-    boton.addEventListener("click", () => {
-        if (!usuarioActual) {
-            mostrarEstado("Espera a que Firebase termine de conectar.");
+// ACCESO DE PAPI SIN CONTRASEÑA
+document.getElementById("accesoPapi").addEventListener("click", async () => {
+    try {
+        mostrarEstado("Ingresando como PAPI...");
+
+        await signOut(autenticacion);
+
+        const resultado = await signInAnonymously(autenticacion);
+
+        usuarioActual = resultado.user;
+
+        entrarAlSistema("PAPI");
+
+    } catch (error) {
+        console.error(error);
+        mostrarEstado("No se pudo ingresar. Revisa Firebase.");
+    }
+});
+
+// MOSTRAR EL CAMPO DE CONTRASEÑA DE YANELLY
+document.getElementById("accesoYanelly").addEventListener("click", () => {
+    document.getElementById("formularioAccesoYanelly")
+        .classList.remove("oculto");
+
+    mostrarEstado("Ingresa tu contraseña para continuar.");
+});
+
+// ACCESO DE YANELLY CON CONTRASEÑA
+document.getElementById("formularioAccesoYanelly")
+    .addEventListener("submit", async evento => {
+
+        evento.preventDefault();
+
+        const contrasena =
+            document.getElementById("contrasenaYanelly").value;
+
+        if (!contrasena) {
+            mostrarEstado("Escribe tu contraseña.");
             return;
         }
 
-        const nombre = boton.dataset.nombre;
+        try {
+            mostrarEstado("Verificando contraseña...");
 
-        localStorage.setItem("nombreMassagePayins", nombre);
+            await signOut(autenticacion);
 
-        entrarAlSistema(nombre);
+            const resultado = await signInWithEmailAndPassword(
+                autenticacion,
+                CORREO_ADMINISTRADORA,
+                contrasena
+            );
+
+            usuarioActual = resultado.user;
+
+            if (usuarioActual.uid !== UID_ADMINISTRADORA) {
+                await signOut(autenticacion);
+                usuarioActual = null;
+                mostrarEstado("Esta cuenta no tiene permiso de administradora.");
+                return;
+            }
+
+            document.getElementById("contrasenaYanelly").value = "";
+
+            entrarAlSistema("YANELLY");
+
+        } catch (error) {
+            console.error(error);
+            mostrarEstado("Contraseña incorrecta o error de conexión.");
+        }
     });
-});
 
+// ENTRAR AL SISTEMA
 function entrarAlSistema(nombre) {
+
     nombreActual = nombre;
 
     personaEsAdministradora =
+        nombre === "YANELLY" &&
+        usuarioActual !== null &&
         usuarioActual.uid === UID_ADMINISTRADORA &&
-        UID_ADMINISTRADORA !== "";
+        !usuarioActual.isAnonymous;
 
-    document.getElementById("pantallaAcceso").classList.add("oculto");
+    if (!personaEsAdministradora && nombre !== "PAPI") {
+        alert("No tienes permiso para entrar.");
+        return;
+    }
+
+    document.getElementById("pantallaAcceso")
+        .classList.add("oculto");
+
+    document.getElementById("formularioAccesoYanelly")
+        .classList.add("oculto");
 
     document.getElementById("nombreUsuario").textContent =
-        nombreActual + (personaEsAdministradora ? " | ADMINISTRADORA" : " | USUARIO");
+        nombreActual +
+        (personaEsAdministradora ? " | ADMINISTRADORA" : " | USUARIO");
 
     document.getElementById("personaIngreso").textContent = nombreActual;
 
     document.getElementById("cerrarSesion").classList.remove("oculto");
+
+    const botonCambiar = document.getElementById("cambiarContrasena");
+
+    if (personaEsAdministradora) {
+        botonCambiar.classList.remove("oculto");
+    } else {
+        botonCambiar.classList.add("oculto");
+    }
 
     if (detenerEscucha) {
         detenerEscucha();
@@ -158,18 +225,79 @@ function entrarAlSistema(nombre) {
     escucharMovimientos();
 }
 
-// Cambiar el nombre visible
-document.getElementById("cerrarSesion").addEventListener("click", () => {
-    localStorage.removeItem("nombreMassagePayins");
+// CAMBIAR CONTRASEÑA DE YANELLY
+document.getElementById("cambiarContrasena")
+    .addEventListener("click", async () => {
 
-    if (detenerEscucha) {
-        detenerEscucha();
-        detenerEscucha = null;
-    }
+        if (!personaEsAdministradora || !usuarioActual.email) {
+            alert("No tienes permiso para cambiar la contraseña.");
+            return;
+        }
 
-    document.getElementById("pantallaAcceso").classList.remove("oculto");
-    mostrarEstado("Selecciona tu nombre para continuar.");
-});
+        const actual = prompt("Escribe tu contraseña actual:");
+
+        if (!actual) return;
+
+        const nueva = prompt("Escribe tu nueva contraseña (mínimo 6 caracteres):");
+
+        if (!nueva || nueva.length < 6) {
+            alert("La nueva contraseña debe tener al menos 6 caracteres.");
+            return;
+        }
+
+        try {
+            const credencial = EmailAuthProvider.credential(
+                usuarioActual.email,
+                actual
+            );
+
+            await reauthenticateWithCredential(usuarioActual, credencial);
+
+            await updatePassword(usuarioActual, nueva);
+
+            alert("¡Tu contraseña se cambió correctamente!");
+
+        } catch (error) {
+            console.error(error);
+            alert("No se pudo cambiar la contraseña. Revisa tu contraseña actual.");
+        }
+    });
+
+// CAMBIAR USUARIO Y CERRAR SESIÓN
+document.getElementById("cerrarSesion")
+    .addEventListener("click", async () => {
+
+        try {
+            if (detenerEscucha) {
+                detenerEscucha();
+                detenerEscucha = null;
+            }
+
+            await signOut(autenticacion);
+
+            usuarioActual = null;
+            nombreActual = "";
+            personaEsAdministradora = false;
+
+            document.getElementById("pantallaAcceso")
+                .classList.remove("oculto");
+
+            document.getElementById("formularioAccesoYanelly")
+                .classList.add("oculto");
+
+            document.getElementById("cambiarContrasena")
+                .classList.add("oculto");
+
+            document.getElementById("contrasenaYanelly").value = "";
+
+            mostrarEstado("Selecciona tu nombre para continuar.");
+
+        } catch (error) {
+            console.error(error);
+            alert("No se pudo cerrar la sesión.");
+        }
+    });
+
 
 // ==========================================
 // ESCUCHAR Y SINCRONIZAR LOS MOVIMIENTOS
